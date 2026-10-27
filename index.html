@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Something good is on its way. Stay close." />
+  <meta name="theme-color" content="#090b0d" />
+  <title>Something Good Is Coming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=League+Spartan:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <video class="scene__video" autoplay muted loop playsinline preload="auto">
+      <source src="media/background.mp4" type="video/mp4" />
+    </video>
+    <div class="scene__shade"></div>
+    <div class="scene__grain"></div>
+  </div>
+
+  <header class="topbar">
+    <a class="wordmark" href="#home" aria-label="Home"><span class="wordmark__mark">✳</span> SOMETHING GOOD</a>
+    <span class="topbar__status"><span class="status-dot"></span> IN THE MAKING</span>
+  </header>
+
+  <main id="home" class="layout">
+    <section class="glass-card" aria-labelledby="headline">
+      <p class="eyebrow"><span class="eyebrow__line"></span> A new story is taking shape</p>
+      <h1 id="headline"><span class="headline-main">Good things</span><br /><em>are coming.</em></h1>
+      <p class="intro">A little patience. A lot of heart.<br />We’re getting something special ready for you.</p>
+      <div class="divider"><span></span><b>✦</b><span></span></div>
+      <p class="note">Stay close. You’ll know when it’s time.</p>
+      <a class="contact-link" href="mailto:hello@yourdomain.com">Say hello <span aria-hidden="true">↗</span></a>
+    </section>
+    <p class="bottom-note">MADE WITH A LITTLE EXTRA HEART <span>✦</span></p>
+  </main>
+  <script>
+    const sceneVideo = document.querySelector(".scene__video");
+
+    if (sceneVideo) {
+      sceneVideo.muted = true;
+      sceneVideo.play().catch(() => {
+        const resumeVideo = () => {
+          sceneVideo.play().catch(() => {});
+          document.removeEventListener("pointerdown", resumeVideo);
+          document.removeEventListener("keydown", resumeVideo);
+        };
+
+        document.addEventListener("pointerdown", resumeVideo, { once: true });
+        document.addEventListener("keydown", resumeVideo, { once: true });
+      });
+    }
+  </script>
+</body>
+</html>
